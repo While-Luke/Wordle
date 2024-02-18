@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,6 +11,7 @@ public class Controller {
 
 	String secretWord = "hello";
 
+	@CrossOrigin(origins = "", allowedHeaders = "")
 	@GetMapping("/")
 	public ResponseEntity<String[]> checkWord(@RequestParam String guess) {
 		if(guess.length() != 5) return ResponseEntity.badRequest().build();
