@@ -27,12 +27,10 @@ function keyDown(){
 }
 
 function sendRequest(){
-    xhttp.onload = function (){
-        checkWord(JSON.parse(this.responseText));  
-    };
-    xhttp.open("GET", `http://localhost:8080/?guess=${currentWord.join("")}`, true);
-    xhttp.setRequestHeader( 'Access-Control-Allow-Origin', '*');
-    xhttp.send();
+    fetch(`http://localhost:8080/?guess=${currentWord.join("")}`, {
+        method: 'GET'})
+    .then(response => response.json())
+    .then(result => checkWord(result));  
 }
 
 function checkWord(correct){
